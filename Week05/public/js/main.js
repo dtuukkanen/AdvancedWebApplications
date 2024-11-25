@@ -12,7 +12,7 @@ async function handleSearchFormSubmit() {
     const name = document.getElementById('searchInput').value;
 
     try {
-        const response = await fetch(`/api/todos/${name}`);
+        const response = await fetch(`/todos/${name}`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -56,7 +56,7 @@ async function addTodo() {
     const todos = document.getElementById('todoInput').value;
 
     try {
-        const response = await fetch('/api/add', {
+        const response = await fetch('/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -78,7 +78,7 @@ async function addTodo() {
 
 async function deleteUser(name) {
     try {
-        const response = await fetch(`/api/delete`, {
+        const response = await fetch(`/delete`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -102,7 +102,7 @@ async function deleteUser(name) {
 
 async function deleteTask(name, todo) {
     try {
-        const response = await fetch('/api/update', {
+        const response = await fetch('/update', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
