@@ -5,23 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="js/main.js" defer></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
-    <form id="todoForm">
-        <label for="userInput">Name:</label>
-        <input type="text" id="userInput" placeholder="Name">
-        <br>
-        <label for="todoInput">ToDo:</label>
-        <input type="text" id="todoInput" placeholder="ToDo">
-        <br>
-        <button type="submit" id="submit-data">Submit</button>
-    </form>
-    <p id="message"></p>
-
-    <form id="searchForm">
-        <input type="text" id="searchInput" placeholder="Search">
-        <button type="submit" id="search">Search</button>
-    </form>
-    <ul id="todoList"></ul>
+    <nav>
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo">Logo</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="sass.html">Sass</a></li>
+            <li><a href="badges.html">Components</a></li>
+            <li><a href="collapsible.html">JavaScript</a></li>
+          </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="col">
+        <form id="todoForm">
+            <label for="userInput">Name:</label>
+            <input type="text" id="userInput" placeholder="Name">
+            <br>
+            <label for="todoInput">ToDo:</label>
+            <input type="text" id="todoInput" placeholder="ToDo">
+            <br>
+            <button type="submit" id="submit-data" class="btn">Submit</button>
+        </form>
+        <p id="message"></p>
+        </div>
+        
+        <div class="col">
+        <form id="searchForm">
+            <input type="text" id="searchInput" placeholder="Search">
+            <button type="submit" id="search" class="btn">Search</button>
+        </form>
+        <ul id="todoList"></ul>
+        </div>
+    </div>
 </body>
 </html>

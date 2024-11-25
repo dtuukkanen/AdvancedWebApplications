@@ -4,9 +4,11 @@ import router from './src/index';
 import morgan from 'morgan';
 import mongoose, { Connection } from 'mongoose';
 
+// Create Express server
 const app: Express = express();
 const port = 3000;
 
+// Connect to MongoDB
 const mongoDB: string = "mongodb://localhost:27017/testdb";
 mongoose.connect(mongoDB)
 mongoose.Promise = Promise;
@@ -14,6 +16,7 @@ const db: Connection = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'MongoDB connection error'));
 
+// Configure Express
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'));
