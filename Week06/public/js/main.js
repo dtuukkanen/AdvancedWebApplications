@@ -3,7 +3,12 @@ document
   .addEventListener("submit", async function (event) {
     event.preventDefault();
     await addOffer();
+    await getOffers();
   });
+
+document.addEventListener("DOMContentLoaded", async function () {
+  await getOffers();
+});
 
 async function addOffer() {
   try {
@@ -33,3 +38,42 @@ async function addOffer() {
     console.error(error);
   }
 }
+
+async function getOffers() {
+  try {
+    const response = await fetch("/offers");
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log(data);
+    await displayOffers(data);
+    console.log("Success:", data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+const displayOffers = async (offers) => {
+  const offersContainer = document.getElementById("offersContainer");
+  offersContainer.innerHTML = "";
+  offers.forEach((offer) => {
+    const offerDiv = document.createElement("div");
+    const image = document.createElement("img");
+    const title = document.createElement("p");
+    const description = document.createElement("p");
+    const price = document.createElement("p");
+
+    offerDiv.className = "offerDiv";
+    image.src = "http://localhost:3000" + offer.imagePath;
+    title.textContent = offer.title;
+    description.textContent = offer.description;
+    price.textContent = offer.price;
+
+    offerDiv.appendChild(image);
+    offerDiv.appendChild(title);
+    offerDiv.appendChild(description);
+    offerDiv.appendChild(price);
+    offersContainer.appendChild(offerDiv);
+  });
+};

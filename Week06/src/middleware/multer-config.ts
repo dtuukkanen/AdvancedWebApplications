@@ -11,12 +11,13 @@ if (!fs.existsSync(imagesDir)) {
 
 const storage: StorageEngine = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, imagesDir);
+    cb(null, "./public/images");
   },
   filename: (req, file, cb) => {
     const fileName: string = path.parse(file.originalname).name;
+    console.log(fileName);
     const uuid: string = uuidv4();
-    const ext: string = path.parse(file.originalname).ext;
+    const ext: string = path.extname(file.originalname);
     cb(null, `${fileName}_${uuid}${ext}`);
   },
 });

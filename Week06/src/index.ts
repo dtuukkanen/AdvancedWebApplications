@@ -15,9 +15,12 @@ router.post(
 
       // If there's an uploaded file, save it to the Image collection
       if (req.file) {
-        const image = new Image({
+        //const imgPath: string = "/images/" + req.file.filename;
+        const imgPath = req.file.path.replace("public", "");
+        console.log(imgPath);
+        const image: IImage = new Image({
           filename: req.file.filename,
-          path: req.file.path,
+          path: imgPath,
         });
         const savedImage = await image.save();
         imageId = savedImage._id;
@@ -40,5 +43,42 @@ router.post(
     }
   },
 );
+
+router.get("/offers", async (req: Request, res: Response) => {
+  try {
+    // Get all offers
+    const offers: IOffer[] = await Offer.find();
+
+    // Create an array to store the offers with image information
+    const offersWithImages = await Promise.all(
+      offers.map(async (offer: IOffer) => {
+        const offerWithImage: IOffer = offer.toObject();
+
+        // If the offer has an imageId, fetch the image corresponding image
+        if (offer.imageId) {
+          const image: IImage | null = await Image.findById(offer.imageId);
+          if (image) {
+            return {
+              title: offer.title,
+              description: offer.description,
+              price: offer.price,
+              imagePath: image.path,
+            };
+          }
+        }
+        return {
+          title: offer.title,
+          description: offer.description,
+          price: offer.price,
+        };
+      }),
+    );
+
+    return void res.status(200).json(offersWithImages);
+  } catch (error: any) {
+    console.error("Error fetching offers:", error);
+    return void res.status(500).json({ message: "Internal server error" });
+  }
+});
 
 export default router;
