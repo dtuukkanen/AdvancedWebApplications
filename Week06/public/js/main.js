@@ -59,21 +59,33 @@ const displayOffers = async (offers) => {
   offersContainer.innerHTML = "";
   offers.forEach((offer) => {
     const offerDiv = document.createElement("div");
+    const cardDiv = document.createElement("div");
+    const innerDiv = document.createElement("div");
+    const imageDiv = document.createElement("div");
+    const contentDiv = document.createElement("div");
     const image = document.createElement("img");
-    const title = document.createElement("p");
+    const title = document.createElement("span");
     const description = document.createElement("p");
     const price = document.createElement("p");
 
-    offerDiv.className = "offerDiv";
+    offerDiv.className = "offerDiv col s12 m6 l4";
+    cardDiv.className = "card hoverable";
+    imageDiv.className = "card-image";
+    contentDiv.className = "card-content";
+    image.className = "responsive-img";
     image.src = "http://localhost:3000" + offer.imagePath;
     title.textContent = offer.title;
+    title.className = "card-title";
     description.textContent = offer.description;
     price.textContent = offer.price;
 
-    offerDiv.appendChild(image);
-    offerDiv.appendChild(title);
-    offerDiv.appendChild(description);
-    offerDiv.appendChild(price);
+    imageDiv.appendChild(image);
+    imageDiv.appendChild(title);
+    cardDiv.appendChild(imageDiv);
+    contentDiv.appendChild(description);
+    contentDiv.appendChild(price);
+    cardDiv.appendChild(contentDiv);
+    offerDiv.appendChild(cardDiv);
     offersContainer.appendChild(offerDiv);
   });
 };
