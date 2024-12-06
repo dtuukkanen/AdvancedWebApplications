@@ -17,7 +17,6 @@ router.post(
       if (req.file) {
         //const imgPath: string = "/images/" + req.file.filename;
         const imgPath = req.file.path.replace("public", "");
-        console.log(imgPath);
         const image: IImage = new Image({
           filename: req.file.filename,
           path: imgPath,
@@ -30,12 +29,11 @@ router.post(
         title: req.body.title,
         description: req.body.description,
         price: req.body.price,
-        ...(req.file ? { imageId: imageId } : {}),
+        imageId: imageId,
       });
 
       // Save offer
       await offer.save();
-      console.log("Offer saved!");
       return void res.status(201).json({ message: "Offer saved successfully" });
     } catch (error: any) {
       console.error("Error saving offer:", error);
@@ -52,8 +50,6 @@ router.get("/offers", async (req: Request, res: Response) => {
     // Create an array to store the offers with image information
     const offersWithImages = await Promise.all(
       offers.map(async (offer: IOffer) => {
-        const offerWithImage: IOffer = offer.toObject();
-
         // If the offer has an imageId, fetch the image corresponding image
         if (offer.imageId) {
           const image: IImage | null = await Image.findById(offer.imageId);
