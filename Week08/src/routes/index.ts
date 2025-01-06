@@ -2,9 +2,9 @@ import { Request, Response, Router } from "express";
 import { compile } from "morgan";
 import bcrypt from "bcryptjs";
 import jwt, { JwtPayload } from "jsonwebtoken";
-//import { validateToken } from "./middleware/auth";
 import { User, IUser } from "../models/User";
-
+import { registerValidation, loginValidation, validate } from '../validators/inputValidation';
+import { validationResult } from "express-validator";
 
 const router: Router = Router();
 
@@ -17,8 +17,14 @@ router.post("/api/user/register", async (req: Request, res: Response) => {
     if (existingUser) {
         return void res.status(403).send({ message: "User already exists" });
     }
-    
-    
+
+    // Validation
+    await Promise.all(registerValidation.map(validation => validation.run(req)));
+    const validationErrors = validationResult(req);
+    if (!validationErrors.isEmpty()) {
+        return void res.status(400).json({ errors: validationErrors.array() });
+    }
+
     // Hash the password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
@@ -39,7 +45,7 @@ router.post("/api/user/register", async (req: Request, res: Response) => {
 });
 
 // Login
-router.post("/api/user/login", async (req: Request, res: Response) => {
+router.post("/api/user/login", loginValidation, validate, async (req: Request, res: Response) => {
     try {
         const { email, password } = req.body;
     
