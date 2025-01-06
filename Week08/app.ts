@@ -1,6 +1,6 @@
 import express, { Express } from "express";
 import path from "path";
-import router from "./src/routes/index";
+import router from "./src/routes";
 import morgan from "morgan";
 import dotenv from "dotenv";
 import mongoose, { Connection } from "mongoose";
