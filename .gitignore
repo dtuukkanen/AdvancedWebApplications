@@ -6,3 +6,4 @@ Bruno/
 dist/
 images/
 .env
+zip_command.sh
