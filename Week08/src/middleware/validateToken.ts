@@ -7,7 +7,7 @@ interface CustomRequest extends Request {
 }
 
 // Middleware to validate user token
-export const validateToken = async (req: Request, res: Response, next: NextFunction) => {
+export const validateToken = (req: Request, res: Response, next: NextFunction) => {
     try {
         const token = req.header('Authorization')?.replace('Bearer ', '');
 
@@ -18,14 +18,14 @@ export const validateToken = async (req: Request, res: Response, next: NextFunct
         const decoded = jwt.verify(token, process.env.SECRET as string);
         (req as CustomRequest).token = decoded;
 
-        next();
+        return void next();
     } catch (error) {
         return void res.status(401).json({ message: "Invalid token" });
     }
 };
 
 // Middleware to validate admin rights
-export const validateAdmin = async (req: Request, res: Response, next: NextFunction) => {
+export const validateAdmin = (req: Request, res: Response, next: NextFunction) => {
     try {
         const token = req.header('Authorization')?.replace('Bearer ', '');
 
@@ -40,7 +40,7 @@ export const validateAdmin = async (req: Request, res: Response, next: NextFunct
         }
 
         (req as CustomRequest).token = decoded;
-        next();
+        return void next();
     } catch (error) {
         return void res.status(403).json({ message: "Access denied." });
     }

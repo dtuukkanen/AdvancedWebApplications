@@ -4,8 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="js/index.js" defer></script>
 </head>
 <body>
-    
+    <!-- Navbar -->
+    <nav>
+        <div class="nav-wrapper">
+            <div class="container">
+                <a href="/" class="brand-logo">Logo</a>
+                <ul id="nav-mobile" class="right">
+                    <li>
+                        <form id="loginForm" class="right-align row">
+                            <div class="input-field col">
+                                <div class="input-field col">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" class="navbar-input">
+                                </div>
+                                <div class="input-field col">
+                                    <label for="password">Password</label>
+                                    <input type="password" id="password" name="password" class="navbar-input">
+                                </div>
+                                <div class="col">
+                                    <button type="submit" class="btn waves-effect waves-light">Login</button>
+                                </div>
+                                <div class="col">
+                                    <button type="button" class="btn waves-effect waves-light" id="registerButton">Register</button>
+                                </div>
+                            </div>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Container -->
+    <div class="container">
+        <div id="topicForm"></div>
+        <div id="topics"></div>
+    </div>
 </body>
 </html>
