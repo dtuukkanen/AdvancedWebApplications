@@ -1,0 +1,48 @@
+header {
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: flex;
+    align-items: center;
+}
+
+nav ul li a {
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+}
+
+nav ul li button {
+    color: white;
+    background-color: lightblue;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+}
+
+nav ul li a:hover, nav ul li button:hover {
+    text-decoration: underline;
+    background-color: rgba(255, 255, 255, 0.1);
+}
