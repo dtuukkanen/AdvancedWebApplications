@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import '../styles/About.css'
 
 interface Post {
   id: number
@@ -9,7 +9,7 @@ interface Post {
 
 const About = () => {
   const [posts, setPosts] = useState<Post[]>([])
-  const { t } = useTranslation()
+  const [visible, setVisible] = useState(12)
 
   useEffect(() => {
      fetch('https://jsonplaceholder.typicode.com/posts')
@@ -19,13 +19,16 @@ const About = () => {
 
   return (
     <div>
-      <h1>{t('About')}</h1>
-      {posts.map(post => (
-        <div key={post.id}>
+      <h1>About</h1>
+      <div className='grid-container'>
+      {posts.slice(0, visible).map(post => (
+        <div key={post.id} className='grid-item'>
           <h3>{post.title}</h3>
           <p>{post.body}</p>
         </div>
       ))}
+      </div>
+      <button onClick={ () => setVisible(visible + 12) }>Show more</button>
     </div>
   )
 }
