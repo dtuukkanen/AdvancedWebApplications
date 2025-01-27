@@ -3,15 +3,13 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { IJoke } from "../types";
 
-interface IJoke {
-  type: string
-  setup: string
-  punchline: string
-  id: number
+interface FrontPageProps {
+  saveJoke: (joke: IJoke) => void;
 }
 
-const FrontPage = () => {
+const FrontPage = ({ saveJoke }: FrontPageProps) => {
   const [joke, setJoke] = useState<IJoke | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
 
@@ -38,7 +36,8 @@ const FrontPage = () => {
 
   return (
     <div>
-      <Button variant="contained" onClick={() => fetchNewJoke()}>New Joke</Button>
+      <Button variant="contained" onClick={() => fetchNewJoke()}>Get Joke</Button>
+      <Button variant="contained" onClick={ () => joke && saveJoke(joke) }>Save Joke</Button>
       <Card sx={{ maxWidth: 345, margin: '2rem auto' }}>
         <CardContent>
           {loading ? (
