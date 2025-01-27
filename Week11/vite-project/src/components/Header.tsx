@@ -7,6 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
 
+// Header component
 const Header = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>

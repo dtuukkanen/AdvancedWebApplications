@@ -1,3 +1,4 @@
+// Type definitions for the Joke API
 export interface IJoke {
   type: string
   setup: string

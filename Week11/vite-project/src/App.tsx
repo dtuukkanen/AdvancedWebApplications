@@ -5,6 +5,7 @@ import { useJokes } from "./hooks/useJokes"
 import SavedPage from "./components/SavedPage"
 
 function App() {
+  // useJokes hook
   const { savedJokes, saveJoke, deleteJoke } = useJokes()
 
   return (

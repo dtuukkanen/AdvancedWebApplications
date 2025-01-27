@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { IJoke } from '../types'
 
+// useJokes hook
 export const useJokes = () => {
     const [savedJokes, setSavedJokes] = useState<IJoke[]>([])
 

@@ -5,11 +5,13 @@ import Box from "@mui/material/Box";
 import { IJoke } from "../types";
 import { CardActions } from "@mui/material";
 
+// SavedPageProps interface
 interface SavedPageProps {
   savedJokes: IJoke[];
   deleteJoke: (id: number) => void;
 }
 
+// SavedPage component
 const SavedPage = ({ savedJokes, deleteJoke }: SavedPageProps) => {
   if (savedJokes.length === 0) {
     return (

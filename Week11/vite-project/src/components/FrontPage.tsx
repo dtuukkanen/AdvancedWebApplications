@@ -5,14 +5,17 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { IJoke } from "../types";
 
+// FrontPageProps interface
 interface FrontPageProps {
   saveJoke: (joke: IJoke) => void;
 }
 
+// FrontPage component
 const FrontPage = ({ saveJoke }: FrontPageProps) => {
   const [joke, setJoke] = useState<IJoke | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
 
+  // Fetch new joke function
   const fetchNewJoke = async (signal?: AbortSignal) => {
     setLoading(true)
     try {
@@ -28,6 +31,7 @@ const FrontPage = ({ saveJoke }: FrontPageProps) => {
     }
   }
 
+  // useEffect hook
   useEffect(() => {
     const abortController = new AbortController()
     fetchNewJoke(abortController.signal)
