@@ -7,7 +7,7 @@ import { IJoke } from "../types";
 
 // FrontPageProps interface
 interface FrontPageProps {
-  saveJoke: (joke: IJoke) => void;
+  saveJoke?: (joke: IJoke) => boolean;
 }
 
 // FrontPage component
@@ -41,7 +41,7 @@ const FrontPage = ({ saveJoke }: FrontPageProps) => {
   return (
     <div>
       <Button variant="contained" onClick={() => fetchNewJoke()}>Get Joke</Button>
-      <Button variant="contained" onClick={ () => joke && saveJoke(joke) }>Save Joke</Button>
+      <Button variant="contained" onClick={ () => joke && saveJoke && saveJoke(joke) }>Save Joke</Button>
       <Card sx={{ maxWidth: 345, margin: '2rem auto' }}>
         <CardContent>
           {loading ? (

@@ -7,6 +7,7 @@ export const useJokes = () => {
 
     const saveJoke = (joke: IJoke) => {
         setSavedJokes(prev => [...prev, joke])
+        return true
     }
 
     const deleteJoke = (id: number) => {
