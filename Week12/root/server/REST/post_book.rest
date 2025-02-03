@@ -1,0 +1,8 @@
+POST http://localhost:1234/api/book
+Content-Type: application/json
+
+{
+    "name": "Little Bear",
+    "author": "Elsa Holmelund Minarik",
+    "pages": 63
+}
