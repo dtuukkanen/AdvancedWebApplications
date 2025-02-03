@@ -5,7 +5,7 @@ import { Book, IBook } from './models/Book';
 const router = Router();
 
 // Route for adding book
-router.post("/api/book", async (req: Request, res: Response) => {
+router.post("/book", async (req: Request, res: Response) => {
     try {
         // Log the request
         console.log("Post request for adding book received");
@@ -28,7 +28,7 @@ router.post("/api/book", async (req: Request, res: Response) => {
 });
 
 // Route for getting single book information
-router.get("/api/book/:name", async (req: Request, res: Response) => {
+router.get("/book/:name", async (req: Request, res: Response) => {
     try {
         // Log the request
         console.log("Get request for single book received");

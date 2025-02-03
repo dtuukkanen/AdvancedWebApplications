@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "app.ts",
   "scripts": {
-    "dev": "tsc-watch --onSuccess \"nodemon dist/app.js\""
+    "dev": "tsc-watch --onSuccess \"nodemon dist/app.js\"",
+    "start": "tsc && node dist/app.js"
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +20,7 @@
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "mongoose": "^8.9.6",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "path": "^0.12.7"
   }
 }
