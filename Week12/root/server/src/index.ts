@@ -27,4 +27,29 @@ router.post("/api/book", async (req: Request, res: Response) => {
     }
 });
 
+// Route for getting single book information
+router.get("/api/book/:name", async (req: Request, res: Response) => {
+    try {
+        // Log the request
+        console.log("Get request for single book received");
+
+        // Read the request parameter
+        const decodedName = decodeURIComponent(req.params.name);
+    
+        // Find the book
+        const book: IBook | null = await Book.findOne({ name: decodedName });
+        
+        if (!book) {
+            console.log("Book not found");
+            return void res.status(404).json({ message: "Book not found" });
+        }
+
+        console.log("Book found");
+        return void res.status(200).json(book);
+
+    } catch (error : any) {
+        return void res.status(500).json({ message: "Internal Server Error", error: error.message });
+    }
+});
+
 export default router;
