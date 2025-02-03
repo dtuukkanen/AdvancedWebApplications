@@ -2,10 +2,20 @@ import express, { Express } from 'express';
 import router from "./src/index";
 import mongoose, { Connection } from 'mongoose';
 import morgan from 'morgan';
+import cors, { CorsOptions } from 'cors';
 
 // Create Express server
 const app: Express = express();
 const port = 1234;
+
+// Cors configuration
+if (process.env.NODE_ENV === 'development') {
+    const corsOptions: CorsOptions = {
+        origin: 'http://localhost:3000',
+        optionsSuccessStatus: 200
+    }
+    app.use(cors(corsOptions));
+};
 
 // Connect to MongoDB
 const mongoUrl = 'mongodb://localhost:27017/testdb';
